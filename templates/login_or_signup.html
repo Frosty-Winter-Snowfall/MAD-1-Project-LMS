@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static',filename='loginpic.jpg')}}" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url("{{ background_image }}");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5;
+      z-index: -1;
+    }
+    .login-form {
+      background: rgba(255, 255, 255, 0.7);
+      opacity: 1.0;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 50px rgba(2, 2, 2, 0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: larger;
+      font-family: cursive;
+    }
+    .top {
+      width: 95%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: center; 
+      align-items: flex-start; 
+      padding: 15px;
+      /* background-color: #8aebf5; */
+      font-size: 36px; 
+      font-family: cursive;
+      text-align: center;
+    }
+    .logo {
+      position: fixed;
+      top: 0;
+      left: 0; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+    .logo img {
+      height: 50px; 
+    }
+    .middle {
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: cursive;
+    }
+    .top button:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+    }
+    .btn {
+      color: white;
+    }
+  </style>
+  <title>Login or signup</title>
+</head>
+<body>
+    <div class="top">
+        <p>Welcome to UB's Library</p>
+      </div>
+      <div class="logo">
+        <img src="{{ logo }}" alt="Logo">
+      </div>
+  <div class="header">
+    <p>Wanna read books?</p>
+    <div class="middle">
+        <form action="/login" method="post">
+          <button type="submit" name="action" value="login" class="btn btn-info">Log in</button>
+        </form>
+        <br>
+        <form action="/signup" method="post">  
+          <button type="submit" name="action" value="signup" class="btn btn-info">Signup</button>
+        </form>
+        <br>
+        <p>Are you the Librarian?</p>
+        <form action="/llogin" method="post">
+            <button type="submit" name="action" value="llogin" class="btn btn-info">Librarian Log in</button>
+          </form>
+        
+      </div>
+  </div>
+</body>
+</html>

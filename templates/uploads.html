@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vintagebook.jpg')}}" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    
+    .sidebar {
+      width: 20%;
+      height: 100vh;
+      position: fixed;
+      background-color: #a6d69a;
+      padding: 15px;
+      box-shadow: 0 0 10px rgb(6, 6, 6);
+      overflow: auto;
+      font-family: cursive;
+      font-weight: 600;
+      font-size: 25px;
+      color: #3e3e3e;
+      line-height: 2;
+      margin-top: 0;
+      margin-bottom: 100px;
+      top: 0;
+    }
+
+    .top {
+        z-index: 10;
+    width: 80%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    padding: 15px;
+    background-color: #a6d69a;
+    box-shadow:0 0 10px rgb(10, 10, 10);
+    font-family: cursive;
+    text-align: center;
+}
+.welcome-message {
+
+}
+.sstyle {
+  margin-top: 20px;
+  
+}
+.logo {
+      position: fixed;
+      top: 0;
+      left: 0px; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+    .logo img {
+      height: 50px; 
+    }
+
+/* .main-content {
+      margin: 0 auto;
+      padding: 15px;
+      font-family: cursive;
+      background-image: url("{{ dashboard_image }}");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      opacity: 0.5;
+      width:50%;
+      height: 80vh;
+      margin-right: 50px;
+      margin-left: 500px;
+      margin-top: 150px;
+      margin-bottom: 50px;
+    } */
+    .account-image {
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    display: inline-block;
+    position: relative;
+    font-size: 2.5rem;
+}
+    .account-actions {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px); 
+      right: 0; 
+      background-color: #8aebf5;
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .account-image:hover .account-actions {
+      display: block;
+    }
+    .top button {
+      margin-left: 10px;
+      font-family: cursive;
+    }
+    .top button:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+    }
+    .btn {
+      color: white;
+    }
+    .account {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .account-btn {
+            font-size: 2.5rem;
+            background: none;
+            border: none;
+        }
+        
+        .account-btn:focus + .account-actions,
+        .account-btn:hover + .account-actions,
+        .account-actions:hover {
+            display: block;
+        }
+        
+        .account-actions {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+           
+        }
+        .signup-form {
+      background: rgba(255, 255, 255, 0.7);
+      /* opacity: 1.0; */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 50px rgba(2, 2, 2, 0.2);
+      max-width: 400px;
+      width: 100%;
+      margin-left: 150px;
+    }
+
+    .signup-form form {
+      display: flex;
+      flex-direction: column;
+    }
+    .signup-form input[type="text"],
+    .signup-form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-family:cursive;
+    }
+
+    .signup-form button {
+      width: 100%;
+      padding: 10px;
+      font-family:cursive;
+      
+    }
+    .main-content {
+    margin: 0 auto;
+    padding: 15px;
+    font-family: cursive;
+    background-image: url("{{ dashboard_image }}"); 
+    background-color: rgba(255, 255, 255, 0.7); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    /* opacity: 0.5; */
+    width: 50%;
+    height: 80vh;
+    margin-right: 50px;
+    margin-left: 500px;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+  </style>
+  <title>Uploads</title>
+</head>
+<body>
+  
+    <div class="sidebar" role="navigation">
+        <div class="logo">
+          <img src="{{ logo }}" alt="Logo">
+        </div>
+        <br>
+        <h1 class="sstyle">Sidebar</h1>
+        <ul>
+          <br>
+          <li><a href="/lsection">All Section</a></li>
+          <br>
+          <li><a href="/lbooks">All Books</a></li>
+          <br>
+          
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" role="button" id="manageBooksDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Manage Sections
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="manageBooksDropdown">
+              <li><a class="dropdown-item" href="/uploadsection">Upload Section</a></li>
+              <li><a class="dropdown-item" href="/addbooks">Add Books to Section</a></li>
+              <li><a class="dropdown-item" href="/editsection">Edit Section</a></li>
+              <li><a class="dropdown-item" href="/deletesection">Delete Section</a></li>
+            </ul>
+          </li>
+          <br>
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" role="button" id="manageBooksDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Manage Books
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="manageBooksDropdown">
+              <li><a class="dropdown-item" href="/uploads">Upload Books</a></li>
+              <li><a class="dropdown-item" href="/download_file">Download Books</a></li>
+              <li><a class="dropdown-item" href="/edit">Edit Books</a></li>
+              <li><a class="dropdown-item" href="/deletebook">Delete Books</a></li>
+            </ul>
+          </li>
+          <br>
+          <li class="dropdown">
+        <a class="dropdown-toggle" href="#" role="button" id="manageBooksDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Manage People
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="manageBooksDropdown">
+          <li><a class="dropdown-item" href="/notifications">Issue Books</a></li>
+          <li><a class="dropdown-item" href="/revoke_book_template">Revoke Books</a></li>
+          <li><a class="dropdown-item" href="/banpeopletemplate">Edit People</a></li>
+          <li><a class="dropdown-item" href="/seefeedback">See Feedback</a></li>
+        </ul>
+      </li>
+      <br>
+      <li><a href="/Statistics">Statistics</a></li>
+    </ul>
+      </div>
+
+  <div class="top">
+    <h1 class="welcome-message">Welcome to Uploads</h1>
+    <br>
+    <div class="account">
+      <button class="account-btn" aria-haspopup="true" aria-expanded="false">
+        <i class="bi bi-backpack-fill"></i>
+      </button>
+      <div class="account-actions" role="menu">
+        <form action="{{ url_for('llogout') }}" method="post">
+          <button type="submit" class="btn btn-info" role="menuitem">Logout</button>
+      </form>
+      <form action="{{ url_for('ldelete_account') }}" method="post">
+        <button type="submit" class="btn btn-danger" role="menuitem">Delete Account</button>
+    </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  <div class="main-content" role="main">
+    <div class="signup-form" role="form" aria-label="Signup Form">
+        <div class="header"><h1>Uploads</h1></div>
+        <form action="{{ url_for('uploads') }}" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="upload" class="form-label";>Upload File:</label>
+            <input type="file" id="file" name="file" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label";>Name of book:</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Enter the name of the book">
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label";>Description:</label>
+            <input type="text" id="content" name="content" class="form-control" placeholder="Give a brief description">
+          </div>
+          <div class="mb-3">
+            <label for="aname" class="form-label">Author:</label>
+            <input type="text" id="aname" name="aname" class="form-control" placeholder="Author's name">
+          </div>
+          <button type="submit" name="action" value="signup" class="btn btn-info">Upload Book</button>
+        </form>
+  </div>
+</body>
+</html>
